@@ -7,7 +7,8 @@ var GAME = {
   level : 1
 };
 
-var SHAPE_SIZE = {
-  x : 60,
-  y : 60
+var SHAPES = {
+  x : 195,
+  y : 195,
+  size: 25
 };

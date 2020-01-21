@@ -3,6 +3,8 @@ var canvas = document.getElementById('mainCanvas');
 
 
 
+
+
 function handleSmallShapeAnimation() {
     SMALLSHAPES.smallShapes.forEach(function(smallShape, index, object) {
 
@@ -43,37 +45,37 @@ function RenderNewObject(context) {
   //console.log(true);
   if (n == 2)
   {
-    drawCircle();
+    drawCircle(195,195,25);
     console.log("circle");
   }
   if (n == 3)
   {
-    drawTriangle();
+    drawTriangle(195,195,25);
     console.log("tri");
   }
   if (n == 4)
   {
-    drawSquare();
+    drawSquare(195,195,25);
     console.log("sq");
   }
   if (n==5)
   {
-    drawPentagon();
+    drawPentagon(195,195,25);
     console.log("pent");
   }
   if (n == 6)
   {
-    drawHexagon();
+    drawHexagon(195,195,25);
     console.log("hex");
   }
   if (n == 7)
   {
-    drawHeptagon();
+    drawHeptagon(195,195,25);
     console.log("hept");
   }
 //drawSquare();
 
-}
+
 /**
 function HandleNewObjectMovement() {
   SQUARE_COORDINATES.x += 1;
@@ -89,10 +91,35 @@ function HandleNewObjectMovement() {
   }
 }
 */
+}
+var i = 0;
+function timer()
+{
+  context.font = "20px Arial";
+  //context.fillStyle='black';
 
 
+  context.fillText(i/100, 10, GAME.canvas.height-10)
+  if (i/100 >= 60)
+  {
+    GAME.started = false;
+  }
+  if (i%1000 == 0)
+  {
+    i = i+100;
+  }
+  //for (i=0; i<60000; i++)
+  ///{
 
-console.log(n);
+  //}
+}
+
+
+var score = 0;
+
+//console.log(n);
+
+context.fillStyle = getRandomColor();
 
 function runGame() {
   var canvas = document.getElementById('mainCanvas');
@@ -107,17 +134,23 @@ function runGame() {
     // 2 - Clear the CANVAS
     context.clearRect(0, 0, 400, 400);
 
+    context.fillText("Score " + score, 20, 70);
+
     RenderNewObject();
     RenderSmallShapes(context);
-
+    //drawHexagon();
+    console.log(SHAPES.x);
     // 3 - Draw new items
     //RenderSpaceship(context);
-
+    timer();
+    i = i+1.5;
+    //console.log(i);
 
 
   } else {
+    context.clearRect(0, 0, 400, 400);
     context.font = "30px Arial";
-    context.fillText("Game Over      Level " + GAME.level, 135, 200);
+    context.fillText("Game Over      Score " + score, 35, 200);
   }
   window.requestAnimationFrame(runGame);
 }

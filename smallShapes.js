@@ -39,18 +39,6 @@ function AddSmallShape(size) {
  *  This returns an smallShape a certain distance from the spaceship
  */
 function GetNewSmallShapeLocation() {
-  /*
-  var x = SPACE_SHIP.latest.x;
-  var y = SPACE_SHIP.latest.y;
-
-  // Create a object which is 50-100 distnace away from the ship
-  var xOffset = Math.floor(
-    Math.random() * Math.floor(SMALLSHAPES.spawnDistance.xMin)
-  ) + (SMALLSHAPES.spawnDistance.xMax - SMALLSHAPES.spawnDistance.xMin);
-  var yOffset = Math.floor(
-    Math.random() * Math.floor(SMALLSHAPES.spawnDistance.xMin)
-  ) + (SMALLSHAPES.spawnDistance.xMax - SMALLSHAPES.spawnDistance.xMin);
-  */
   return [190, 190];
 }
 
@@ -70,11 +58,37 @@ function RenderSmallShapes(context) {
         context.moveTo(smallShape.x, smallShape.y);
         //context.fillStyle = getSecondRandomColor();
         context.lineWidth = 2;
+
+        if (n == 2)
+        {
+          drawCircle(smallShape.x, smallShape.y, 10);
+        }
+        else if (n==3){
+          drawTriangle(smallShape.x, smallShape.y, 10);
+        }
+        else if (n==4){
+          drawSquare(smallShape.x, smallShape.y, 10);
+        }
+        else if (n==5){
+          drawPentagon(smallShape.x, smallShape.y, 10);
+        }
+        else if (n==6){
+          drawHexagon(smallShape.x, smallShape.y, 10);
+        }
+        else if (n==7){
+          drawHeptagon(smallShape.x, smallShape.y, 10);
+        }
+        /**
         context.fillRect(
           smallShape.x,
           smallShape.y,
           smallShape.size * SMALLSHAPES.pixelScaleBySize,
           smallShape.size * SMALLSHAPES.pixelScaleBySize
         );
+        */
+
+
+
+
   });
 }
