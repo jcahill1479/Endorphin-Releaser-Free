@@ -12,9 +12,25 @@ function handleSmallShapeAnimation() {
           var radians = (Math.PI / 180) * smallShape.angle,
               cos = Math.cos(radians),
               sin = Math.sin(radians);
+          smallShape.gravitySpeed += SMALLSHAPES.gravity;
           smallShape.x += SMALLSHAPES.baseSpeed * sin;
-          smallShape.y +=  SMALLSHAPES.baseSpeed * cos;
-
+          smallShape.y +=  SMALLSHAPES.baseSpeed*cos+smallShape.gravitySpeed;
+          if (smallShape.x>GAME.canvas.width)
+          {
+            delete smallShape.x;
+          }
+          else if (smallShape.x<0)
+          {
+            delete smallShape.x;
+          }
+          else if (smallShape.y>GAME.canvas.height)
+          {
+            delete smallShape.y;
+          }
+          else if (smallShape.y<0)
+          {
+            delete smallShape.y;
+          }
           // Check if smallShape is leaving the boundary, if so, switch sides
           /*
           if (smallShape.x > GAME.canvas.width) {
@@ -124,7 +140,6 @@ context.fillStyle = getRandomColor();
 function runGame() {
   var canvas = document.getElementById('mainCanvas');
   var context = canvas.getContext('2d');
-
   if (GAME.started) {
     //RenderNewObject();
     // 1 - Reposition the objects

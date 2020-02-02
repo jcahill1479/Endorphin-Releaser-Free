@@ -11,6 +11,7 @@ var SMALLSHAPES = {
     yMax : 100
   },
   baseSpeed : 3,
+  gravity : 0.05,
   pixelScaleBySize : 5
 };
 
@@ -20,7 +21,7 @@ function AddSmallShape(size) {
   // Generate smallShape location
   var locationXY = GetNewSmallShapeLocation();
   var direction = GetNewSmallShapeDirection();
-
+  var gravity;
   // Add smallShape
   SMALLSHAPES.smallShapes.push(
     {
@@ -28,7 +29,8 @@ function AddSmallShape(size) {
       y : locationXY[1],
       angle : direction,
       size : size,
-      remove : false
+      remove : false,
+      gravitySpeed : 0
     }
   );
 }
